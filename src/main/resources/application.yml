@@ -1,0 +1,6 @@
+deepseek:
+  api:
+    token: sk-ab3d3e13f0034235a9a705b57e48d524
+openai:
+  api:
+    key: your_openai_api_key_here
