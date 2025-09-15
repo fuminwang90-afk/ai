@@ -1,6 +1,8 @@
 package com.zxtech.ai.service;
 
 import com.zxtech.ai.service.interfaces.LlmService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.*;
@@ -14,6 +16,8 @@ import java.util.Map;
 
 @Service("gpt")
 public class GptServiceImpl implements LlmService {
+
+    private static final Logger log = LoggerFactory.getLogger(GptServiceImpl.class);
 
     @Value("${openai.api.key}")
     private String apiKey;
@@ -61,7 +65,7 @@ public class GptServiceImpl implements LlmService {
                 return "调用GPT接口失败，状态码：" + response.getStatusCodeValue();
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error("Error calling GPT interface", e);
             return "调用GPT接口异常：" + e.getMessage();
         }
     }
