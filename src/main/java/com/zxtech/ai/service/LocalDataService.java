@@ -2,6 +2,8 @@ package com.zxtech.ai.service;
 
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
@@ -11,6 +13,8 @@ import java.util.List;
 
 @Service
 public class LocalDataService {
+
+    private static final Logger log = LoggerFactory.getLogger(LocalDataService.class);
 
     public List<String> getAllTexts() {
         // 模拟：从本地数据库取出的数据
@@ -37,7 +41,7 @@ public class LocalDataService {
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error("Failed to extract text from PDF", e);
         }
         return texts;
     }
